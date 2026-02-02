@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Portfolio | Developer</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    
+    <!-- Dark Mode Toggle -->
+    <div class="dark-mode-toggle">
+        <button id="darkModeToggle" class="dark-mode-btn">
+            <i class="fas fa-moon"></i>
+            <span>Dark Mode</span>
+        </button>
+    </div>
+
     <!-- Navigation -->
-    <nav>
+    <nav class="sticky-nav">
         <div class="nav-container">
             <div class="logo">Portfolio</div>
             <ul class="nav-menu">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#gallery">Gallery</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="menu-toggle" id="menuToggle">
@@ -111,6 +123,99 @@
         <ul id="project-list" class="project-list"></ul>
     </section>
 
+    <!-- Image Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="section-header">
+            <h2>Project Gallery</h2>
+            <div class="divider"></div>
+            <p class="section-subtitle">Visual showcase of my work with interactive hover effects</p>
+        </div>
+        
+        <div class="gallery-container">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" 
+                     alt="Code Editor Interface" loading="lazy">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Code Editor</h3>
+                        <p>Custom-built code editor with syntax highlighting</p>
+                        <span class="gallery-tech">JavaScript</span>
+                        <span class="gallery-tech">CSS</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" 
+                     alt="E-commerce Dashboard" loading="lazy">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>E-commerce Dashboard</h3>
+                        <p>Admin panel with analytics and order management</p>
+                        <span class="gallery-tech">React</span>
+                        <span class="gallery-tech">Chart.js</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" 
+                     alt="Analytics Dashboard" loading="lazy">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Analytics Platform</h3>
+                        <p>Real-time data visualization with interactive charts</p>
+                        <span class="gallery-tech">D3.js</span>
+                        <span class="gallery-tech">API</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" 
+                     alt="Mobile App Design" loading="lazy">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Fitness App</h3>
+                        <p>Mobile workout tracking with progress visualization</p>
+                        <span class="gallery-tech">React Native</span>
+                        <span class="gallery-tech">Firebase</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" 
+                     alt="Blog Platform" loading="lazy">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Blog Platform</h3>
+                        <p>Content management system with rich text editor</p>
+                        <span class="gallery-tech">Node.js</span>
+                        <span class="gallery-tech">MongoDB</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1545235617-9465d2a55698?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" 
+                     alt="Social Media Dashboard" loading="lazy">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Social Network</h3>
+                        <p>Community platform with real-time notifications</p>
+                        <span class="gallery-tech">Socket.io</span>
+                        <span class="gallery-tech">Express</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="gallery-note">
+            <p>Hover over images to see project details and technologies used</p>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="section-header">
@@ -124,26 +229,43 @@
                 <div class="contact-details">
                     <p><strong>Email:</strong> chkbhardwaj0225@gmail.com</p>
                     <p><strong>Phone:</strong> +91-8351940231</p>
+                    <p><strong>Location:</strong> Remote / India</p>
                 </div>
                 <div class="contact-hours">
                     <h4>Response Time</h4>
                     <p>Typically within 24 hours on weekdays</p>
                 </div>
+                <div class="contact-social">
+                    <h4>Connect With Me</h4>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
             </div>
+            <!-- Updated Form with Phone Number -->
             <form id="contactForm" class="contact-form">
                 <div class="form-group">
-                    <label for="name">Name</label>
+                    <label for="name">Name <span class="required">*</span></label>
                     <input type="text" id="name" placeholder="Your full name" required>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="Your email address" required>
+                    <label for="email">Email <span class="required">*</span></label>
+                    <input type="email" id="email" placeholder="your.email@example.com" required>
                 </div>
                 <div class="form-group">
-                    <label for="message">Message</label>
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="+91 1234567890">
+                    <small class="form-hint">Optional - Include country code</small>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message <span class="required">*</span></label>
                     <textarea id="message" placeholder="Your message or inquiry" rows="5" required></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary submit-btn">Send Message</button>
+                <button type="submit" class="btn btn-primary submit-btn">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
                 <p id="formMessage" class="form-message"></p>
             </form>
         </div>
@@ -153,7 +275,12 @@
     <footer>
         <div class="footer-content">
             <p>Built with HTML, CSS, and JavaScript</p>
-            <a href="#home" class="back-to-top">Back to Top</a>
+            <div class="footer-info">
+                <p class="dark-mode-status" id="darkModeStatus">Light Mode Active</p>
+                <a href="#home" class="back-to-top">
+                    <i class="fas fa-arrow-up"></i> Back to Top
+                </a>
+            </div>
         </div>
     </footer>
 

@@ -37,6 +37,75 @@ const contactForm = document.getElementById("contactForm");
 const formMessage = document.getElementById("formMessage");
 const menuToggle = document.getElementById("menuToggle");
 const navMenu = document.querySelector(".nav-menu");
+const darkModeToggle = document.getElementById("darkModeToggle");
+const darkModeIcon = darkModeToggle.querySelector("i");
+const darkModeText = darkModeToggle.querySelector("span");
+const darkModeStatus = document.getElementById("darkModeStatus");
+const html = document.documentElement;
+const nav = document.querySelector(".sticky-nav");
+
+// Dark Mode State
+let isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+// Initialize Dark Mode
+function initDarkMode() {
+    if (isDarkMode) {
+        enableDarkMode();
+    } else {
+        disableDarkMode();
+    }
+}
+
+// Enable Dark Mode
+function enableDarkMode() {
+    html.classList.add('dark-mode');
+    darkModeIcon.className = 'fas fa-sun';
+    darkModeText.textContent = 'Light Mode';
+    darkModeStatus.textContent = 'Dark Mode Active';
+    localStorage.setItem('darkMode', 'true');
+    isDarkMode = true;
+}
+
+// Disable Dark Mode
+function disableDarkMode() {
+    html.classList.remove('dark-mode');
+    darkModeIcon.className = 'fas fa-moon';
+    darkModeText.textContent = 'Dark Mode';
+    darkModeStatus.textContent = 'Light Mode Active';
+    localStorage.setItem('darkMode', 'false');
+    isDarkMode = false;
+}
+
+// Toggle Dark Mode
+function toggleDarkMode() {
+    if (isDarkMode) {
+        disableDarkMode();
+    } else {
+        enableDarkMode();
+    }
+}
+
+// Phone Number Validation
+function isValidPhone(phone) {
+    if (!phone.trim()) {
+        return { valid: true, message: '' }; // Phone is optional
+    }
+    
+    // Remove all non-digit characters
+    const cleaned = phone.replace(/\D/g, '');
+    
+    // Check if it's a valid phone number (international format)
+    const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+    
+    if (phoneRegex.test(cleaned) && cleaned.length >= 10 && cleaned.length <= 15) {
+        return { valid: true, message: '' };
+    }
+    
+    return { 
+        valid: false, 
+        message: "Please enter a valid phone number (10-15 digits, country code optional)" 
+    };
+}
 
 // Load projects dynamically
 function loadProjects() {
@@ -59,6 +128,7 @@ contactForm.addEventListener("submit", function(e) {
 
     const name = document.getElementById("name").value.trim();
     const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
     const message = document.getElementById("message").value.trim();
 
     // Reset form message
@@ -68,18 +138,38 @@ contactForm.addEventListener("submit", function(e) {
     formMessage.style.border = "";
 
     // Validate form
-    if (name === "" || email === "" || message === "") {
-        showFormMessage("Please fill in all required fields.", "error");
-        return;
+    let errors = [];
+
+    // Name validation
+    if (name === "") {
+        errors.push("Name is required");
+    } else if (name.length < 2) {
+        errors.push("Name must be at least 2 characters long");
     }
 
-    if (!isValidEmail(email)) {
-        showFormMessage("Please enter a valid email address.", "error");
-        return;
+    // Email validation
+    if (email === "") {
+        errors.push("Email is required");
+    } else if (!isValidEmail(email)) {
+        errors.push("Please enter a valid email address");
     }
 
-    if (message.length < 10) {
-        showFormMessage("Message should be at least 10 characters long.", "error");
+    // Phone validation
+    const phoneValidation = isValidPhone(phone);
+    if (!phoneValidation.valid) {
+        errors.push(phoneValidation.message);
+    }
+
+    // Message validation
+    if (message === "") {
+        errors.push("Message is required");
+    } else if (message.length < 10) {
+        errors.push("Message should be at least 10 characters long");
+    }
+
+    // Show errors or success
+    if (errors.length > 0) {
+        showFormMessage(errors.join('. '), "error");
         return;
     }
 
@@ -90,7 +180,7 @@ contactForm.addEventListener("submit", function(e) {
     contactForm.reset();
     
     // Log form data (for demonstration)
-    console.log("Form submitted:", { name, email, message });
+    console.log("Form submitted:", { name, email, phone, message });
 });
 
 // Email validation
@@ -112,6 +202,9 @@ function showFormMessage(text, type) {
         formMessage.style.color = "#080";
         formMessage.style.border = "1px solid #cfc";
     }
+    
+    // Scroll to message
+    formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 // Smooth scrolling for navigation links
@@ -152,18 +245,25 @@ document.addEventListener("click", function(e) {
     }
 });
 
-// Navbar scroll effect
+// Sticky Navigation Scroll Effect
 window.addEventListener("scroll", function() {
-    const nav = document.querySelector("nav");
-    if (window.scrollY > 100) {
+    // Add/remove scrolled class for nav styling
+    if (window.scrollY > 50) {
+        nav.classList.add("scrolled");
         nav.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.1)";
     } else {
+        nav.classList.remove("scrolled");
         nav.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.05)";
     }
 });
 
+// Dark Mode Toggle Event
+darkModeToggle.addEventListener("click", toggleDarkMode);
+
 // Initialize when DOM is loaded
 document.addEventListener("DOMContentLoaded", function() {
+    // Initialize features
+    initDarkMode();
     loadProjects();
     
     // Add hover effect to project cards
@@ -175,6 +275,36 @@ document.addEventListener("DOMContentLoaded", function() {
         
         card.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(0)';
+        });
+    });
+    
+    // Add hover effect to gallery items
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    galleryItems.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px)';
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+    
+    // Form input validation feedback
+    const formInputs = contactForm.querySelectorAll('input, textarea');
+    formInputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.value.trim() === '' && this.hasAttribute('required')) {
+                this.style.borderColor = '#f87171';
+            } else {
+                this.style.borderColor = '';
+            }
+        });
+        
+        input.addEventListener('input', function() {
+            if (this.style.borderColor === 'rgb(248, 113, 113)') {
+                this.style.borderColor = '';
+            }
         });
     });
 });
