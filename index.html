@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Portfolio | Developer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Portfolio</div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Full Stack Developer</h1>
+            <p class="hero-subtitle">Building modern web applications with clean code and thoughtful design.</p>
+            <p class="hero-description">I specialize in creating responsive, user-friendly interfaces and scalable backend solutions.</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#contact" class="btn btn-secondary">Contact Me</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="image-placeholder">
+                <div class="code-snippet">
+                    <pre>
+                        <code>
+                            &lt;!-- My Work --&gt;
+                            &lt;div class="project"&gt;
+                            &lt;h3&gt;Clean Code&lt;/h3&gt;
+                            &lt;p&gt;Efficient solutions&lt;/p&gt;
+                            &lt;/div&gt;
+                        </code>
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="section-header">
+            <h2>About Me</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <p>I'm a passionate Full Stack Developer trainee focused on mastering both frontend and backend technologies. I believe in writing clean, maintainable code and creating intuitive user experiences.</p>
+                <p>My approach combines technical expertise with attention to detail, ensuring every project meets both functional requirements and design standards.</p>
+                
+                <div class="skills-section">
+                    <h3>Technical Skills</h3>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h4>Frontend</h4>
+                            <div class="skill-list">
+                                <span>HTML5</span>
+                                <span>CSS3</span>
+                                <span>JavaScript</span>
+                                <span>Responsive Design</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Tools</h4>
+                            <div class="skill-list">
+                                <span>Git</span>
+                                <span>GitHub</span>
+                                <span>VS Code</span>
+                                <span>Chrome DevTools</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-sidebar">
+                <div class="profile-card">
+                    <h3>Developer Profile</h3>
+                    <div class="profile-details">
+                        <p><strong>Focus:</strong> Full Stack Development</p>
+                        <p><strong>Experience:</strong> Training & Projects</p>
+                        <p><strong>Location:</strong> Remote</p>
+                        <p><strong>Availability:</strong> Open to Opportunities</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="section-header">
+            <h2>Projects</h2>
+            <div class="divider"></div>
+            <p class="section-subtitle">A selection of my recent work and practice projects.</p>
+        </div>
+        <ul id="project-list" class="project-list"></ul>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="section-header">
+            <h2>Contact</h2>
+            <div class="divider"></div>
+            <p class="section-subtitle">Get in touch to discuss opportunities or collaborations.</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                <div class="contact-details">
+                    <p><strong>Email:</strong> chkbhardwaj0225@gmail.com</p>
+                    <p><strong>Phone:</strong> +91-8351940231</p>
+                </div>
+                <div class="contact-hours">
+                    <h4>Response Time</h4>
+                    <p>Typically within 24 hours on weekdays</p>
+                </div>
+            </div>
+            <form id="contactForm" class="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" placeholder="Your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Your email address" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" placeholder="Your message or inquiry" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary submit-btn">Send Message</button>
+                <p id="formMessage" class="form-message"></p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>Built with HTML, CSS, and JavaScript</p>
+            <a href="#home" class="back-to-top">Back to Top</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
